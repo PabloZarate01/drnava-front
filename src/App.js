@@ -10,6 +10,7 @@ import {
 import LoginPage from './pages/LoginPage';
 import PrivateRoute from './components/PrivateRoute';
 import DashboardPage from './pages/DashboardPage';
+import PatientsPage from './pages/PacientesPage';
 // import PrivateRoute from './components/PrivateRoute';
 // import PatientsListPage from './pages/PatientsListPage';
 
@@ -19,6 +20,7 @@ function App() {
     <Router>
         <Switch>
           <Route path="/login" component={LoginPage}/>
+          <PrivateRoute path="/pacientes" component={PatientsPage}/>
           <PrivateRoute path="/" component={DashboardPage}/>
         </Switch>
     </Router>

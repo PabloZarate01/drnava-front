@@ -15,9 +15,14 @@ const SideBar = () => {
                 <hr className="sidebar-divider my-0"></hr>
                 {/* <!-- Nav Item - Dashboard --> */}
                 <li className="nav-item active">
-                    <a className="nav-link" href="index.html">
+                    <a className="nav-link" href="/">
                         <i className="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span></a>
+                </li>
+                <li className="nav-item active">
+                    <a className="nav-link" href="/pacientes">
+                        <i className="fas fa-fw fa-user-alt"></i>
+                        <span>Pacientes</span></a>
                 </li>
                 {/* <!-- Divider --> */}
                 <hr className="sidebar-divider" />
