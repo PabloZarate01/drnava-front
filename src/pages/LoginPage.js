@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { cmsAPI } from '../utils/http-client';
 import { Redirect } from 'react-router-dom';
+import LogoED from '../img/logo.png'
 class LoginPage extends Component {
     constructor(props){
         super(props);
@@ -98,7 +99,7 @@ class LoginPage extends Component {
                                     <div className="col-lg-6">
                                         <div className="p-5">
                                             <div className="text-center">
-                                                <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                                <h1 className="h4 text-gray-900 mb-4">Estetica dental Dr. Nava!</h1>
                                             </div>
                                             <form onSubmit={this.handleSubmit} className="user">
                                                 <div className="form-group">
