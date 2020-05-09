@@ -1,8 +1,8 @@
 import axios from 'axios'
 let baseURL;
-if (process.env.REACT_APP_ENV == 'production'){
+if (process.env.REACT_APP_ENV === 'production'){
   baseURL = "http://localhost:8080"
-}else if (process.env.REACT_APP_ENV == 'staging'){
+}else if (process.env.REACT_APP_ENV === 'staging'){
   baseURL = "http://localhost:8080"
 }else{
   baseURL = 'http://localhost:8080'

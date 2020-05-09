@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { cmsAPI } from '../utils/http-client';
 import { Redirect } from 'react-router-dom';
-import LogoED from '../img/logo.png'
 class LoginPage extends Component {
     constructor(props){
         super(props);
@@ -81,7 +80,7 @@ class LoginPage extends Component {
         })
     }
     render() {
-        const { errMessage, message, success,RedirectToReferrer} = this.state;
+        const { RedirectToReferrer} = this.state;
         const { from } = this.props.location.state || { from: { pathname:'/'}}
         if(RedirectToReferrer===true){
             return(<Redirect to={from}/>)

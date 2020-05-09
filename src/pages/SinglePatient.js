@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import SideBar from '../components/SideBar';
-import TopBar from '../components/TopBar';
-import PatientsTable from '../components/PatientsTable';
-class PatientsPage extends Component {
+import SideBar from "../components/SideBar";
+import TopBar from "../components/TopBar";
+
+class HomePage extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -15,10 +14,10 @@ class PatientsPage extends Component {
             <SideBar/>
             <div id="content-wrapper" class="d-flex flex-column">
                 <div id="content">
+                    {/* Inserte aqui TopBar */}
                     <TopBar/>
                     <div class="container-fluid">
-                        Pacientes
-                        <PatientsTable {...this.props}/>
+                        Single Patient
                     </div>
                 </div>
             </div>
@@ -27,4 +26,4 @@ class PatientsPage extends Component {
     }
 }
  
-export default PatientsPage;
+export default HomePage;

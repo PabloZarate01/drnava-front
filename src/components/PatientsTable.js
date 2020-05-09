@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import { cmsAPI } from '../utils/http-client'
+import NotificationAlert from "react-notification-alert";
 class PatientsTable extends Component {
+    notificationAlert = React.createRef();
+  notify(type,message) {
+    var options = {};
+    options = {
+      place: "tr",
+      message,
+      type: type,
+      icon: "fas fa-fw fa-bell",
+      autoDismiss: 7
+    };
+    this.notificationAlert.current.notificationAlert(options);
+  }
     constructor(props){
         super(props);
         this.state = {
             fetching : false,
             patients : [],
-            error : false,
-            notifyMessage:"",
-            notifyStatus:""
+            error : false
         }
         this.getPatients = this.getPatients.bind(this);
         this.deletePatient = this.deletePatient.bind(this);
@@ -39,28 +50,22 @@ class PatientsTable extends Component {
         cmsAPI.delete('/api/patient/delete/'+patId)
         .then(response => {
             console.log("Deleted:",response)
-            this.setState({
-                notifyStatus:"success",
-                notifyMessage:"Paciente eliminado"
-            })
+            this.notify("success","EL PACIENTE HA SIDO BORRADO EXITOSAMENTE")
             setTimeout(()=>{
                 window.location.reload(false);
-            },1500)
+            },1300)
             
         })
         .catch(err => {
             console.log("Error<>:",err)
-            this.setState({
-                notifyStatus:"error",
-                notifyMessage:"Error al eliminar paciente"
-            })
+            this.notify("danger","HA OCURRIDO UN ERROR AL REMOVER EL PACIENTE, INTENTA MÁS TARDE")
         })
     }
     componentWillMount(){
         this.getPatients();
     }
     render(){
-        let { fetching, patients, error, notifyStatus, notifyMessage } = this.state;
+        let { fetching, patients, error } = this.state;
         if(!fetching && !error && patients < [0] || patients.message ){
             return(
                 <div>
@@ -79,25 +84,8 @@ class PatientsTable extends Component {
         return(
             <>
             {/* ALERT */}
-            {
-                notifyStatus === "danger" ?
-                <div className='alert alert-warning alert-dismissible fade show' role="alert">
-                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div> : "",
-                notifyStatus ? 
-                <div className='alert alert-success alert-dismissible fade show' role="alert">
-                <strong>Hecho!</strong> Se ha borrado el paciente, la tabla se refrescará, espere...
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                : ""
-            }
-            {/* ALERT */}
             <div class="card shadow mb-4">
+            <NotificationAlert ref={this.notificationAlert} />
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
             </div>
