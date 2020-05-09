@@ -11,7 +11,7 @@ if (process.env.REACT_APP_ENV === 'production'){
 export const cmsAPI = axios.create({
   //baseURL: "https://dr-nava-server.herokuapp.com/",
   baseURL:"http://localhost:8080",
-  timeout: 10000,
+  timeout: 16000,
   headers : {
     common:{}
   }

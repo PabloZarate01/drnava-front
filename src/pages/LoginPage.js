@@ -58,29 +58,33 @@ class LoginPage extends Component {
                     isLoading : false,
                     disableButton : false
                 });
-            }else if(res.status === 200 && res.data.message==="Login Success!!!")
-            localStorage.setItem("user", JSON.stringify(res.data.user));
-            localStorage.setItem("userJWT", res.data.token);
-            localStorage.setItem("logged", true);
-            cmsAPI.addJwt(res.data.token);
-            this.setState({
-                success:res.data.message,
-                isLoading : false,
-                disableButton : false,
-                RedirectToReferrer:true
-            });
+            }else if(res.status === 200 && res.data.message==="Login Success!!!"){
+                localStorage.setItem("user", JSON.stringify(res.data.user));
+                localStorage.setItem("userJWT", res.data.token);
+                localStorage.setItem("logged", true);
+                cmsAPI.addJwt(res.data.token);
+                this.setState({
+                    message:res.data.message,
+                    success:res.data.message,
+                    isLoading : false,
+                    disableButton : false,
+                    RedirectToReferrer:true
+                });
+            }
         })
         .catch(err=>{
             console.error("ErrorLogin:",err)
+            const mensaje = JSON.stringify(err);
             this.setState({
-                errMessage:true,
                 isLoading : false,
-                disableButton : false
+                disableButton : false,
+                message:"Error con el servidor, intente más tarde"
+             
             });
         })
     }
     render() {
-        const { RedirectToReferrer} = this.state;
+        const { RedirectToReferrer,message} = this.state;
         const { from } = this.props.location.state || { from: { pathname:'/'}}
         if(RedirectToReferrer===true){
             return(<Redirect to={from}/>)
@@ -100,6 +104,18 @@ class LoginPage extends Component {
                                             <div className="text-center">
                                                 <h1 className="h4 text-gray-900 mb-4">Estetica dental Dr. Nava!</h1>
                                             </div>
+                                            {
+                                                message ? 
+                                                <div className="text-center m-2">
+                                                <div class="btn btn-warning btn-icon-split" role="alert">
+                                                    <span class="icon text-white-50 mr-2">
+                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                    </span>
+                                                    {message}
+                                                </div>
+                                            </div>:""
+                                            }
+                                            
                                             <form onSubmit={this.handleSubmit} className="user">
                                                 <div className="form-group">
                                                     <input
@@ -130,7 +146,7 @@ class LoginPage extends Component {
                                                 <div className="form-group">
                                                     <div className="custom-control custom-checkbox small">
                                                         <input type="checkbox" className="custom-control-input" id="customCheck" />
-                                                        <label className="custom-control-label" htmlFor="customCheck">Remember Me</label>
+                                                        <label className="custom-control-label" htmlFor="customCheck">Recordarme</label>
                                                     </div>
                                                 </div>
                                                 <button 
@@ -141,19 +157,13 @@ class LoginPage extends Component {
                                                     {this.state.isLoading ? 
                                                     <div className="d-flex justify-content-center">
                                                     <div className="spinner-border text-dark" role="status">
-                                                        <span className="sr-only">Loading...</span>
+                                                        <span className="sr-only">Cargando...</span>
                                                     </div>
                                                     </div>
-                                                    : "Login"}
+                                                    : "Iniciar Sesion"}
                                                 </button>
                                             </form>
                                             <hr />
-                                            <div className="text-center">
-                                                <a className="small" href="forgot-password.html">Forgot Password?</a>
-                                            </div>
-                                            <div className="text-center">
-                                                <a className="small" href="register.html">Create an Account!</a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

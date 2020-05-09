@@ -106,7 +106,6 @@ class CreatePatient extends Component {
             <NotificationAlert ref={this.notificationAlert} />
             <SideBar/>
             <div id="content-wrapper" className="d-flex flex-column">
-            <button onClick={()=>this.notify("success","EL PACIENTE HA SIDO BORRADO EXITOSAMENTE")} value="CLICK ME">LKASDÑLAKS</button>
                 <div id="content">
                     {/* Inserte aqui TopBar */}
                     <div className="container-fluid">
