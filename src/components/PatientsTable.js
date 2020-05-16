@@ -126,7 +126,7 @@ class PatientsTable extends Component {
                                             if (window.confirm(`ESTÁS APUNTO DE ELIMINAR A EL PACIENTE: ${patient.name || ""} ${patient.lastName|| ""}`)) this.deletePatient(patient._id) } }>
                                             <i class="fas fa-trash"></i>
                                         </div>
-                                        <button onClick={() => this.props.history.push('paciente/' + patient._id)} class="p-2 btn btn-primary btn-circle">
+                                        <button onClick={() => this.props.history.push('pacientes/' + patient._id)} class="p-2 btn btn-primary btn-circle">
                                             <i class="fas fa-exclamation"></i>
                                         </button>
                                     </td>

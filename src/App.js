@@ -10,6 +10,7 @@ import DashboardPage from './pages/DashboardPage';
 import PatientsPage from './pages/PacientesPage';
 import A404Page from './pages/A404Page';
 import CreatePatient from './pages/CreatePatient';
+import SinglePatient from './pages/SinglePatient';
 // import PrivateRoute from './components/PrivateRoute';
 // import PatientsListPage from './pages/PatientsListPage';
 
@@ -19,8 +20,7 @@ function App() {
     <Router>
         <Switch>
           <Route path="/login" component={LoginPage}/>
-          
-          {/* <PrivateRoute path="/pacientes/:patId" component={PatientsPage}/> */}
+          <PrivateRoute path="/pacientes/:patId" component={SinglePatient}/>
           <PrivateRoute exact path="/pacientenuevo" component={CreatePatient}/>
           <PrivateRoute exact path="/pacientes" component={PatientsPage}/>
           <PrivateRoute exact path="/" component={DashboardPage}/>
