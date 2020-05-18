@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import SideBar from "../components/SideBar";
+import PatRecordsTable from '../components/PatRecordsTable';
 import TopBar from '../components/TopBar';
-
-class HomePage extends Component {
+class PatientRecords extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -17,7 +17,8 @@ class HomePage extends Component {
                 <div id="content">
                     <TopBar/>
                     <div class="container-fluid">
-                        Blank Template
+                        PatientRecords
+                        <PatRecordsTable {...this.props}/>
                     </div>
                 </div>
             </div>
@@ -26,4 +27,4 @@ class HomePage extends Component {
     }
 }
  
-export default HomePage;
+export default PatientRecords;

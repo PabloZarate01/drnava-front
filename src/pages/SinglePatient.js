@@ -3,6 +3,7 @@ import SideBar from "../components/SideBar";
 import { cmsAPI } from '../utils/http-client'
 import NotificationAlert from "react-notification-alert";
 import Moment from 'react-moment';
+import PatRecordsTable from '../components/PatRecordsTable';
 class SinglePatient extends Component {
   notificationAlert = React.createRef();
   notify(type,message) {
@@ -326,6 +327,10 @@ class SinglePatient extends Component {
                                 </button>
                                 <hr />
                             </form>
+                            <div className="text-center">
+                                <h1 className="h4 text-gray-900 mb-4">Expediente</h1>
+                            </div>
+                            <PatRecordsTable {...this.props}/>
                             <hr />
                         </div>
                         {/* CONTENT */}

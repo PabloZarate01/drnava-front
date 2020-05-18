@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SideBar from "../components/SideBar";
 import { cmsAPI } from '../utils/http-client'
 import NotificationAlert from "react-notification-alert";
+import Moment from 'react-moment';
 class CreatePatient extends Component {
   notificationAlert = React.createRef();
   notify(type,message) {
@@ -62,6 +63,7 @@ class CreatePatient extends Component {
           email,
           notes
         } = this.state;
+        console.log("Entry date",entryDate)
         let newPatient = JSON.stringify({
           name,
           lastName,
@@ -118,7 +120,8 @@ class CreatePatient extends Component {
                                 <div className="form-group row">
                                     <div className="col-sm-6 mb-3 mb-sm-0">
                                         <label for="name">Nombre(s)</label>
-                                        <input                            required
+                                        <input                            
+                                          required
                                           name="name"
                                           placeholder="Nombre"
                                           type="text"
@@ -161,7 +164,10 @@ class CreatePatient extends Component {
                                     </div>
                                     <div className="col-sm-3 mb-sm-4">
                                         <label for="entryDate">Fecha de registro</label>
-                                        <input                           type="date"
+                                        <input
+                                          onChange={this.formDataHandler} 
+                                          value={this.state.entryDate}
+                                          type="date"
                                           name="entryDate"
                                           id="entryDate"
                                           className="form-control form-control-user"/>

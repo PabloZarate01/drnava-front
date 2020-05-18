@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { cmsAPI } from '../utils/http-client'
 import NotificationAlert from "react-notification-alert";
+import Moment from 'react-moment';
 class PatientsTable extends Component {
     notificationAlert = React.createRef();
   notify(type,message) {
@@ -87,7 +88,7 @@ class PatientsTable extends Component {
             <div class="card shadow mb-4">
             <NotificationAlert ref={this.notificationAlert} />
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Lista de pacientes</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -119,16 +120,22 @@ class PatientsTable extends Component {
                                     <td>{ patient.name || "N/A"}</td>
                                     <td>{patient.lastName || "N/A"}</td>
                                     <td>{patient.type || "N/A"}</td>
-                                    <td>{patient.name ? patient.name : "N/A"}</td>
+                                    <td><Moment format="DD/MM/YYYY">{patient.entryDate}</Moment></td>
                                     <td className="text-right">
-                                        <div class="p-2 btn btn-danger btn-circle" 
+                                        <button onClick={() => this.props.history.push('nregistro/' + patient._id)} class="p-2 btn ml-1 btn-primary btn-circle">
+                                            <i class="fas fa-archive"></i>
+                                        </button>
+                                        <button onClick={() => this.props.history.push('expediente/' + patient._id)} class="p-2 btn ml-1 btn-primary btn-circle">
+                                            <i class="fas fa-archive"></i>
+                                        </button>
+                                        <button onClick={() => this.props.history.push('pacientes/' + patient._id)} class="p-2 btn ml-1 btn-secondary btn-circle">
+                                            <i className="fas fa-user"></i>
+                                        </button>
+                                        <div className="p-2 btn ml-4 btn-danger btn-circle" 
                                         onClick={() => { 
                                             if (window.confirm(`ESTÁS APUNTO DE ELIMINAR A EL PACIENTE: ${patient.name || ""} ${patient.lastName|| ""}`)) this.deletePatient(patient._id) } }>
                                             <i class="fas fa-trash"></i>
                                         </div>
-                                        <button onClick={() => this.props.history.push('pacientes/' + patient._id)} class="p-2 btn btn-primary btn-circle">
-                                            <i class="fas fa-exclamation"></i>
-                                        </button>
                                     </td>
                                 </tr>
                             )
