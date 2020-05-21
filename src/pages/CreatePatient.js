@@ -39,13 +39,13 @@ class CreatePatient extends Component {
             notes: ""
         }
     }
-    formDataHandler = (e) =>{
-        e.preventDefault();
-        console.log(e.target.name);
-        console.log(e.target.value);
-        this.setState({
-            [e.target.name] : e.target.value
-        });
+      formDataHandler = (e) =>{
+          e.preventDefault();
+          console.log(e.target.name);
+          console.log(e.target.value);
+          this.setState({
+              [e.target.name] : e.target.value
+          });
       }
       createPatient = (ev) =>{
         ev.preventDefault()

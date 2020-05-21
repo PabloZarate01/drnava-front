@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
 import SideBar from "../components/SideBar";
 import TopBar from '../components/TopBar';
-import { cmsAPI } from '../utils/http-client'
+import { cmsAPI } from '../utils/http-client';
+import NotificationAlert from "react-notification-alert";
 class CreateRecord extends Component {
+  notificationAlert = React.createRef();
+  notify(type,message) {
+    var options = {};
+    options = {
+      place: "tr",
+      message,
+      type: type,
+      icon: "fas fa-fw fa-bell",
+      autoDismiss: 7
+    };
+    this.notificationAlert.current.notificationAlert(options);
+  }
     constructor(props){
         super(props);
         this.state = {
             name:"",
             notes:"",
-            customDate:"",
+            entryDate:"",
             patId:""
         }
     }
@@ -18,16 +31,26 @@ class CreateRecord extends Component {
             patId:params.patId
         })
     }
+    formDataHandler = (e) =>{
+      e.preventDefault();
+      console.log(e.target.name);
+      console.log(e.target.value);
+      this.setState({
+          [e.target.name] : e.target.value
+      });
+    }
     createPatient = (ev) =>{
         ev.preventDefault()
         const {
           name,
-          notes
+          notes,
+          entryDate
         } = this.state;
 
         let newRecord = JSON.stringify({
           name,
-          notes
+          notes,
+          entryDate
         })
         this.setState({
           sending :true
@@ -53,6 +76,7 @@ class CreateRecord extends Component {
     render() { 
         return (
         <div id="wrapper">
+            <NotificationAlert ref={this.notificationAlert} />
             <SideBar/>
             <div id="content-wrapper" class="d-flex flex-column">
                 <div id="content">
@@ -66,7 +90,7 @@ class CreateRecord extends Component {
                             <form onSubmit={this.createPatient} className="user text-center">
                                 <div className="form-group d-flex justify-content-center row">
                                     <div className="col-sm-8 mb-3 mb-sm-0">
-                                        <label for="name">Nombre(s)</label>
+                                        <label for="name">Nombre</label>
                                         <input                            
                                           required
                                           name="name"
