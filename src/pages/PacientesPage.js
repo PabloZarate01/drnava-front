@@ -15,7 +15,7 @@ class PatientsPage extends Component {
             <SideBar/>
             <div id="content-wrapper" class="d-flex flex-column">
                 <div id="content">
-                    <TopBar/>
+                    <TopBar {...this.props}/>
                     <div class="container-fluid">
                         Pacientes
                         <PatientsTable {...this.props}/>

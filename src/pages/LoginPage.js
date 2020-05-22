@@ -21,6 +21,7 @@ class LoginPage extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }   
     componentWillMount(){
+        console.log(process.env)
         const logged = localStorage.getItem("logged");
         if(logged){
             this.setState({

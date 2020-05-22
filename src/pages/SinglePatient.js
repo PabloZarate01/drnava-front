@@ -4,6 +4,7 @@ import { cmsAPI } from '../utils/http-client'
 import NotificationAlert from "react-notification-alert";
 import Moment from 'react-moment';
 import PatRecordsTable from '../components/PatRecordsTable';
+import TopBar from '../components/TopBar';
 class SinglePatient extends Component {
   notificationAlert = React.createRef();
   notify(type,message) {
@@ -159,6 +160,7 @@ class SinglePatient extends Component {
             <SideBar/>
             <div id="content-wrapper" className="d-flex flex-column">
                 <div id="content">
+                    <TopBar {...this.props}/>
                     {/* Inserte aqui TopBar */}
                     <div className="container-fluid">
                         {/* CONTENT */}

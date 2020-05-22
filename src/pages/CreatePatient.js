@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TopBar from '../components/TopBar';
 import SideBar from "../components/SideBar";
 import { cmsAPI } from '../utils/http-client'
 import NotificationAlert from "react-notification-alert";
@@ -109,6 +110,7 @@ class CreatePatient extends Component {
             <SideBar/>
             <div id="content-wrapper" className="d-flex flex-column">
                 <div id="content">
+                    <TopBar {...this.props}/>
                     {/* Inserte aqui TopBar */}
                     <div className="container-fluid">
                         {/* CONTENT */}
