@@ -123,10 +123,7 @@ class PatientsTable extends Component {
                                     <td><Moment format="DD/MM/YYYY">{patient.entryDate}</Moment></td>
                                     <td className="text-right">
                                         <button onClick={() => this.props.history.push('nregistro/' + patient._id)} class="p-2 btn ml-1 btn-primary btn-circle">
-                                            <i class="fas fa-archive"></i>
-                                        </button>
-                                        <button onClick={() => this.props.history.push('expediente/' + patient._id)} class="p-2 btn ml-1 btn-primary btn-circle">
-                                            <i class="fas fa-archive"></i>
+                                            <i class="fas fa-plus"></i>
                                         </button>
                                         <button onClick={() => this.props.history.push('pacientes/' + patient._id)} class="p-2 btn ml-1 btn-secondary btn-circle">
                                             <i className="fas fa-user"></i>

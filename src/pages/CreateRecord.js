@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, useRef, createRef } from 'react';
 import SideBar from "../components/SideBar";
 import TopBar from '../components/TopBar';
 import { cmsAPI } from '../utils/http-client';
 import NotificationAlert from "react-notification-alert";
+import CanvasDraw from 'react-canvas-draw'
+import OdontogramaImg from '../img/odontograma.jpg'
+
 class CreateRecord extends Component {
-  notificationAlert = React.createRef();
+  notificationAlert = createRef();
+  odontCanvas = createRef();
   notify(type,message) {
     var options = {};
     options = {
@@ -17,6 +21,7 @@ class CreateRecord extends Component {
     this.notificationAlert.current.notificationAlert(options);
   }
     constructor(props){
+        
         super(props);
         this.state = {
             name:"",
@@ -25,6 +30,7 @@ class CreateRecord extends Component {
             patId:""
         }
     }
+    
     componentWillMount(){
         let {match: {params}} = this.props;
         this.setState({
@@ -69,11 +75,31 @@ class CreateRecord extends Component {
           this.setState({
             sending :false
           })
-        })
+        })  
+      }
+      OdontCanvasAction = (action) =>{
+        switch(action){
+          case "SAVE":
+            console.log("SAVE CLICK!")
+            const data = this.odontCanvas.current.getSave();
+            console.log(data)
+            break;
+
+          case "CLEAR":
+            console.log("CLEAR CLICK!")
+            break;
+
+          case "UNDO":
+            console.log("UNDO CLICK!")
+            break;
+
+          default:
+            console.log('Lo lamentamos, por el momento no disponemos de ' + action + '.');
+        }
         
       }
-
-    render() { 
+      
+    render() {
         return (
         <div id="wrapper">
             <NotificationAlert ref={this.notificationAlert} />
@@ -123,6 +149,24 @@ class CreateRecord extends Component {
                                       />
                                     </div>
                                 </div>
+                                <div className="mx-auto p-5">
+                              <div className="row">
+                                <div className="col">
+                                  <button onClick={() => this.OdontCanvasAction("SAVE")} className="btn btn-primary btn-user btn-block" >GUARDAR</button>
+                                </div>
+                                <div className="col">
+                                  <button onClick={() => this.OdontCanvasAction("CLEAR")} className="btn btn-primary btn-user btn-block" >LIMPIAR</button>
+                                </div>
+                                <div className="col">
+                                  <button onClick={() => this.OdontCanvasAction("UNDO")} className="btn btn-primary btn-user btn-block" >DESHACER</button>
+                                </div>
+                              </div>
+                              <CanvasDraw
+                                brushRadius={2}
+                                imgSrc={OdontogramaImg}
+                                canvasWidth={600}
+                              />
+                              </div>
                                 <button
                                   className="btn btn-primary btn-user btn-block"
                                   color="primary"

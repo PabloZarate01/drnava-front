@@ -23,7 +23,7 @@ function App() {
         <Switch>
           <Route path="/login" component={LoginPage}/>
           <PrivateRoute path="/nregistro/:patId" component={CreateRecord}/>
-          <PrivateRoute path="/expedient/:patId" component={PatientRecords}/>
+          {/* <PrivateRoute path="/expedient/:patId" component={PatientRecords}/> */}
           <PrivateRoute path="/pacientes/:patId" component={SinglePatient}/>
           <PrivateRoute exact path="/pacientenuevo" component={CreatePatient}/>
           <PrivateRoute exact path="/pacientes" component={PatientsPage}/>
