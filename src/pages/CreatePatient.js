@@ -228,7 +228,7 @@ class CreatePatient extends Component {
                                       />
                                     </div>
                                     <div className="col-sm-4 mb-sm-4">
-                                      <label for="street">Notas</label>
+                                      <label for="street">Telefono Celular</label>
                                       <input 
                                         className="form-control form-control-user mb-sm-2" 
                                         placeholder="Celular" 

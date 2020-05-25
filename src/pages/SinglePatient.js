@@ -293,7 +293,7 @@ class SinglePatient extends Component {
                                       />
                                     </div>
                                     <div className="col-sm-4 mb-sm-4">
-                                      <label htmlFor="street">Notas</label>
+                                      <label htmlFor="street">Telefono Celular</label>
                                       <input
                                         disabled={!this.state.editable} 
                                         className="form-control form-control-user mb-sm-2" 
