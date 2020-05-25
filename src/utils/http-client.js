@@ -1,16 +1,14 @@
 import axios from 'axios'
 let baseURL;
 if (process.env.REACT_APP_ENV === 'production'){
-  baseURL = "http://localhost:8080"
-}else if (process.env.REACT_APP_ENV === 'staging'){
-  baseURL = "http://localhost:8080"
+  baseURL = "https://dr-nava-server.herokuapp.com"
 }else{
   baseURL = 'http://localhost:8080'
 }
 
 export const cmsAPI = axios.create({
   //baseURL: "https://dr-nava-server.herokuapp.com/",
-  baseURL:"http://localhost:8080",
+  baseURL,
   timeout: 16000,
   headers : {
     common:{}
