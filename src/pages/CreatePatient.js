@@ -3,7 +3,6 @@ import TopBar from '../components/TopBar';
 import SideBar from "../components/SideBar";
 import { cmsAPI } from '../utils/http-client'
 import NotificationAlert from "react-notification-alert";
-import Moment from 'react-moment';
 class CreatePatient extends Component {
   notificationAlert = React.createRef();
   notify(type,message) {

@@ -92,7 +92,6 @@ class PatRecordsTable extends Component {
       })
   }
     deletePatient(recordId){
-      const {patients} = this.state
       cmsAPI.delete('/api/expedient/delete/'+recordId)
       .then(response => {
           console.log("Deleted:",response)
@@ -132,14 +131,14 @@ class PatRecordsTable extends Component {
         return(
             <>
             {/* ALERT */}
-            <div class="card shadow mb-4">
+            <div className="card shadow mb-4">
             <NotificationAlert ref={this.notificationAlert} />
-            <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Expediente {this.state.name ||""} {this.state.lastName || ""}</h6>
+            <div className="card-header py-3">
+            <h6 className="m-0 font-weight-bold text-primary">Expediente {this.state.name ||""} {this.state.lastName || ""}</h6>
             </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <div className="card-body">
+              <div className="table-responsive">
+                <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Name</th>
@@ -166,13 +165,13 @@ class PatRecordsTable extends Component {
                                     <td>{record.notes || "N/A"}</td>
                                     <td>{<Moment format="DD/MM/YYYY">{record.customDate}</Moment>|| "N/A"}</td>
                                     <td className="text-right">
-                                        <button onClick={() => this.props.history.push('pacientes/' + record._id)} class="p-2 btn btn-primary btn-circle">
-                                            <i class="fas fa-exclamation"></i>
+                                        <button onClick={() => this.props.history.push(`/expediente/${this.state.patientId}/${record._id}`)} className="p-2 btn btn-primary btn-circle">
+                                            <i className="fas fa-exclamation"></i>
                                         </button>
-                                        <div class="p-2 btn ml-4 btn-danger btn-circle" 
+                                        <div className="p-2 btn ml-4 btn-danger btn-circle" 
                                         onClick={() => { 
                                             if (window.confirm(`ESTÁS APUNTO DE ELIMINAR A EL PACIENTE: ${record.name || ""} ${record.lastName|| ""}`)) this.deletePatient(record._id) } }>
-                                            <i class="fas fa-trash"></i>
+                                            <i className="fas fa-trash"></i>
                                         </div>
                                     </td>
                                 </tr>

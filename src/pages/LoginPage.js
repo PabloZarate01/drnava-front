@@ -75,7 +75,6 @@ class LoginPage extends Component {
         })
         .catch(err=>{
             console.error("ErrorLogin:",err)
-            const mensaje = JSON.stringify(err);
             this.setState({
                 isLoading : false,
                 disableButton : false,
@@ -126,7 +125,6 @@ class LoginPage extends Component {
                                                     type="text"
                                                     name="userName"
                                                     id="exampleUsername"
-                                                    placeholder="Usuario"
                                                     className="form-control form-control-user"
                                                     aria-describedby="userHelp" 
                                                     placeholder="Ingrese nombre de usuario..." 

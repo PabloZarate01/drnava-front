@@ -41,7 +41,7 @@ class SinglePatient extends Component {
             email : "",
             notes: "",
             patId:"",
-            disabled:true
+            editable:false
         }
     }
     //editar formulario // edit toggle form
@@ -170,14 +170,14 @@ class SinglePatient extends Component {
                             </div>
                             <h1 className="h4 text-gray-900 mb-4">Paciente: {this.state.name +" "+this.state.lastName}</h1>
                             <span>Paciente desde <Moment format="DD-MM-YYYY" date={this.state.entryDate}/></span>
-                            <div class="custom-control custom-switch">
-                              <input  onChange={() => this.toggleEditable()} defaultChecked={this.state.editable} type="checkbox" class="custom-control-input" id="customSwitch1"/>
-                              <label class="custom-control-label" for="customSwitch1">{this.state.editable ? "EDITABLE : ENCENDIDO" : "EDITABLE : APAGADO"}</label>
+                            <div className="custom-control custom-switch">
+                              <input  onChange={() => this.toggleEditable()} defaultChecked={this.state.editable} type="checkbox" className="custom-control-input" id="customSwitch1"/>
+                              <label className="custom-control-label" htmlFor="customSwitch1">{this.state.editable ? "EDITABLE : ENCENDIDO" : "EDITABLE : APAGADO"}</label>
                             </div>
                             <form onSubmit={this.createPatient} className="user text-center">
                                 <div className="form-group row">
                                     <div className="col-sm-6 mb-3 mb-sm-0">
-                                        <label for="name">Nombre(s)</label>
+                                        <label htmlFor="name">Nombre(s)</label>
                                         <input
                                           disabled={!this.state.editable}
                                           required
@@ -189,7 +189,7 @@ class SinglePatient extends Component {
                                         />
                                     </div>
                                     <div className="col-sm-6 mb-sm-4">
-                                        <label for="lastName">Apellido(s)</label>
+                                        <label htmlFor="lastName">Apellido(s)</label>
                                         <input
                                           disabled={!this.state.editable}
                                           required
@@ -203,7 +203,7 @@ class SinglePatient extends Component {
                                 </div>
                                 <div className="form-group row">
                                   <div className="col-sm-3 mb-3 mb-sm-0">
-                                    <label for="type">Tipo</label>
+                                    <label htmlFor="type">Tipo</label>
                                     <input
                                       disabled={!this.state.editable} 
                                       name="type"
@@ -214,7 +214,7 @@ class SinglePatient extends Component {
                                     />
                                     </div>
                                     <div className="col-sm-6 mb-3  mb-sm-0">
-                                      <label for="email">Email</label>
+                                      <label htmlFor="email">Email</label>
                                       <input
                                         disabled={!this.state.editable}
                                         className="form-control form-control-user" 
@@ -225,7 +225,7 @@ class SinglePatient extends Component {
                                       />
                                     </div>
                                     <div className="col-sm-3 mb-sm-4">
-                                        <label for="entryDate">Fecha de registro: <Moment format="DD-MM-YYYY" date={this.state.entryDate}/></label>
+                                        <label htmlFor="entryDate">Fecha de registro: <Moment format="DD-MM-YYYY" date={this.state.entryDate}/></label>
                                         <input
                                           disabled={!this.state.editable}                           
                                           type="date"
@@ -236,7 +236,7 @@ class SinglePatient extends Component {
                                 </div>
                                 <div className="form-group row">
                                     <div className="col-sm-6 mb-3 mb-sm-0">
-                                        <label for="street">Calle</label>
+                                        <label htmlFor="street">Calle</label>
                                         <input
                                           disabled={!this.state.editable} 
                                           className="form-control form-control-user"
@@ -247,7 +247,7 @@ class SinglePatient extends Component {
                                         />
                                     </div>
                                     <div className="col-sm-3">
-                                      <label for="suburb">Colonia</label>
+                                      <label htmlFor="suburb">Colonia</label>
                                       <input
                                         disabled={!this.state.editable} 
                                         className="form-control form-control-user" 
@@ -258,7 +258,7 @@ class SinglePatient extends Component {
                                       />
                                     </div>
                                     <div className="col-sm-3 mb-sm-4">
-                                      <label for="city">Ciudad</label>
+                                      <label htmlFor="city">Ciudad</label>
                                       <input
                                         disabled={!this.state.editable} 
                                         className="form-control form-control-user" 
@@ -271,7 +271,7 @@ class SinglePatient extends Component {
                                 </div>
                                 <div className="form-group row">
                                     <div className="col-sm-4 mb-3 mb-sm-0">
-                                        <label for="street">Telefono de Casa</label>
+                                        <label htmlFor="street">Telefono de Casa</label>
                                         <input
                                           disabled={!this.state.editable} 
                                           className="form-control form-control-user"
@@ -282,7 +282,7 @@ class SinglePatient extends Component {
                                         />
                                     </div>
                                     <div className="col-sm-4">
-                                      <label for="street">Telefono de Oficina</label>
+                                      <label htmlFor="street">Telefono de Oficina</label>
                                       <input 
                                         disabled={!this.state.editable}
                                         className="form-control form-control-user" 
@@ -293,7 +293,7 @@ class SinglePatient extends Component {
                                       />
                                     </div>
                                     <div className="col-sm-4 mb-sm-4">
-                                      <label for="street">Notas</label>
+                                      <label htmlFor="street">Notas</label>
                                       <input
                                         disabled={!this.state.editable} 
                                         className="form-control form-control-user mb-sm-2" 
@@ -304,7 +304,7 @@ class SinglePatient extends Component {
                                       />
                                     </div>
                                     <div className="col-sm-12">
-                                      <label for="street">Notas</label>
+                                      <label htmlFor="street">Notas</label>
                                       <input
                                         disabled={!this.state.editable} 
                                         className="form-control form-control-user" 

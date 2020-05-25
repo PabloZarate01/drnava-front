@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, createRef, useRef } from 'react';
 import { cmsAPI } from '../utils/http-client'
 import NotificationAlert from "react-notification-alert";
 import Moment from 'react-moment';
 class PatientsTable extends Component {
-    notificationAlert = React.createRef();
+    notificationAlert = createRef();
   notify(type,message) {
     var options = {};
     options = {
@@ -85,14 +85,14 @@ class PatientsTable extends Component {
         return(
             <>
             {/* ALERT */}
-            <div class="card shadow mb-4">
+            <div className="card shadow mb-4">
             <NotificationAlert ref={this.notificationAlert} />
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Lista de pacientes</h6>
+            <div className="card-header py-3">
+              <h6 className="m-0 font-weight-bold text-primary">Lista de pacientes</h6>
             </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <div className="card-body">
+              <div className="table-responsive">
+                <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Name</th>
@@ -122,16 +122,16 @@ class PatientsTable extends Component {
                                     <td>{patient.type || "N/A"}</td>
                                     <td><Moment format="DD/MM/YYYY">{patient.entryDate}</Moment></td>
                                     <td className="text-right">
-                                        <button onClick={() => this.props.history.push('nregistro/' + patient._id)} class="p-2 btn ml-1 btn-primary btn-circle">
-                                            <i class="fas fa-plus"></i>
+                                        <button onClick={() => this.props.history.push('nregistro/' + patient._id)} className="p-2 btn ml-1 btn-primary btn-circle">
+                                            <i className="fas fa-plus"></i>
                                         </button>
-                                        <button onClick={() => this.props.history.push('pacientes/' + patient._id)} class="p-2 btn ml-1 btn-secondary btn-circle">
+                                        <button onClick={() => this.props.history.push('pacientes/' + patient._id)} className="p-2 btn ml-1 btn-secondary btn-circle">
                                             <i className="fas fa-user"></i>
                                         </button>
                                         <div className="p-2 btn ml-4 btn-danger btn-circle" 
                                         onClick={() => { 
                                             if (window.confirm(`ESTÁS APUNTO DE ELIMINAR A EL PACIENTE: ${patient.name || ""} ${patient.lastName|| ""}`)) this.deletePatient(patient._id) } }>
-                                            <i class="fas fa-trash"></i>
+                                            <i className="fas fa-trash"></i>
                                         </div>
                                     </td>
                                 </tr>
