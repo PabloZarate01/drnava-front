@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SideBar from '../components/SideBar';
 import TopBar from '../components/TopBar';
-import PatientsTable from '../components/PatientsTable';
+import PatientsTable from '../components/patients/PatientsTable';
 class PatientsPage extends Component {
     constructor(props){
         super(props);

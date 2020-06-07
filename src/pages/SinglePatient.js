@@ -3,7 +3,7 @@ import SideBar from "../components/SideBar";
 import { cmsAPI } from '../utils/http-client'
 import NotificationAlert from "react-notification-alert";
 import Moment from 'react-moment';
-import PatRecordsTable from '../components/PatRecordsTable';
+import PatRecordsTable from '../components/records/PatRecordsTable';
 import TopBar from '../components/TopBar';
 class SinglePatient extends Component {
   notificationAlert = React.createRef();

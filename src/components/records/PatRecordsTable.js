@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { cmsAPI } from '../utils/http-client'
+import { cmsAPI } from '../../utils/http-client'
 import NotificationAlert from "react-notification-alert";
 import Moment from 'react-moment';
 class PatRecordsTable extends Component {

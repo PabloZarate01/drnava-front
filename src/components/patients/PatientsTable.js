@@ -1,7 +1,8 @@
 import React, { Component, createRef, useRef } from 'react';
-import { cmsAPI } from '../utils/http-client'
+import { cmsAPI } from '../../utils/http-client'
 import NotificationAlert from "react-notification-alert";
 import Moment from 'react-moment';
+import { PatientRow } from './PatientsRow';
 class PatientsTable extends Component {
     notificationAlert = createRef();
   notify(type,message) {
@@ -92,6 +93,26 @@ class PatientsTable extends Component {
             </div>
             <div className="card-body">
               <div className="table-responsive">
+              <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="dataTable_length">
+                            <label>Show
+                                <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select> entries
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div id="dataTable_filter" class="dataTables_filter">
+                            <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"/>
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
@@ -116,25 +137,11 @@ class PatientsTable extends Component {
 
                         patients.map(patient => {
                             return (
-                                <tr key={patient._id} style={{ cursor: 'pointer' }}>
-                                    <td>{ patient.name || "N/A"}</td>
-                                    <td>{patient.lastName || "N/A"}</td>
-                                    <td>{patient.type || "N/A"}</td>
-                                    <td><Moment format="DD/MM/YYYY">{patient.entryDate}</Moment></td>
-                                    <td className="text-right">
-                                        <button onClick={() => this.props.history.push('nregistro/' + patient._id)} className="p-2 btn ml-1 btn-primary btn-circle">
-                                            <i className="fas fa-plus"></i>
-                                        </button>
-                                        <button onClick={() => this.props.history.push('pacientes/' + patient._id)} className="p-2 btn ml-1 btn-secondary btn-circle">
-                                            <i className="fas fa-user"></i>
-                                        </button>
-                                        <div className="p-2 btn ml-4 btn-danger btn-circle" 
-                                        onClick={() => { 
-                                            if (window.confirm(`ESTÁS APUNTO DE ELIMINAR A EL PACIENTE: ${patient.name || ""} ${patient.lastName|| ""}`)) this.deletePatient(patient._id) } }>
-                                            <i className="fas fa-trash"></i>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <PatientRow 
+                                    {...patient}
+                                    {...this.props} 
+                                    deletePatient={()=>this.deletePatient(patient._id)}    
+                                />
                             )
                         })
                     }
