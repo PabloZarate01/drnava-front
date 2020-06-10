@@ -85,12 +85,19 @@ class PatRecordsTable extends Component {
             //phoneNumbers
             email : patInf.email,
             notes: patInf.email,
+
+            search:""
           })
       })
       .catch(err=>{
           console.log("Error:",err)
       })
   }
+    handleSearch = (e) => {
+      this.setState({
+          [e.target.name]:e.target.value
+      })
+    }
     deletePatient(recordId){
       cmsAPI.delete('/api/expedient/delete/'+recordId)
       .then(response => {
@@ -138,6 +145,19 @@ class PatRecordsTable extends Component {
             </div>
             <div className="card-body">
               <div className="table-responsive">
+              <div id="dataTable_filter" class="dataTables_filter">
+                <label>Buscar:
+                    <input 
+                        type="search"
+                        name="search"
+                        className="form-control form-control-sm"
+                        placeholder="Buscar..."
+                        onChange={this.handleSearch}
+                        value={this.state.search}
+                        aria-controls="dataTable"
+                    />
+                </label>
+                </div>
                 <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
@@ -159,6 +179,11 @@ class PatRecordsTable extends Component {
                     {
 
                         patRecords.map(record => {
+                          if(record.name.includes(this.state.search)
+                            // record.name.toLowerCase().includes(this.state.search.toLowerCase()) ||
+                            // record.notes.toLowerCase().includes(this.state.search.toLowerCase()) ||
+                            // record.customDate.toLowerCase().includes(this.state.search.toLowerCase())
+                          ){
                             return (
                                 <tr key={record._id} style={{ cursor: 'pointer' }}>
                                     <td>{ record.name || "N/A"}</td>
@@ -175,7 +200,9 @@ class PatRecordsTable extends Component {
                                         </div>
                                     </td>
                                 </tr>
+                                
                             )
+                          }else return null;
                         })
                     }
                   </tbody>
