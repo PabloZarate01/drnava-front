@@ -5,14 +5,13 @@ const SideBar = () => {
             {/* Sidebar */}
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
                 {/* <!-- Sidebar - Brand --> */}
-                <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                    <div className="sidebar-brand-icon rotate-n-15">
-                        <i className="fas fa-laugh-wink"></i>
+                <a className="sidebar-brand d-flex align-items-center justify-content-center mt-4" href="/">
+                    <div className="sidebar-brand-icon">
+                        <img src="../img/logo.png" width="100" height="100" className="rounded img-fluid"/>
                     </div>
-                    <div className="sidebar-brand-text mx-3">ESTETICA DENTAL</div>
                 </a>
                 {/* <!-- Divider --> */}
-                <hr className="sidebar-divider my-0"></hr>
+                <hr className="sidebar-divider mt-4 my-0"></hr>
                 {/* <!-- Nav Item - Dashboard --> */}
                 <li className="nav-item active">
                     <a className="nav-link" href="/">
