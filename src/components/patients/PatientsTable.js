@@ -1,7 +1,6 @@
-import React, { Component, createRef, useRef } from 'react';
+import React, { Component, createRef } from 'react';
 import { cmsAPI } from '../../utils/http-client'
 import NotificationAlert from "react-notification-alert";
-import Moment from 'react-moment';
 import { PatientRow } from './PatientsRow';
 class PatientsTable extends Component {
     notificationAlert = createRef();
@@ -12,7 +11,8 @@ class PatientsTable extends Component {
       message,
       type: type,
       icon: "fas fa-fw fa-bell",
-      autoDismiss: 7
+      autoDismiss: 7,
+      search:"",
     };
     this.notificationAlert.current.notificationAlert(options);
   }
@@ -21,10 +21,16 @@ class PatientsTable extends Component {
         this.state = {
             fetching : false,
             patients : [],
-            error : false
+            error : false,
+            search:""
         }
         this.getPatients = this.getPatients.bind(this);
         this.deletePatient = this.deletePatient.bind(this);
+    }
+    handleSearch = (e) => {
+        this.setState({
+            [e.target.name]:e.target.value
+        })
     }
     getPatients(){
         this.setState({
@@ -82,7 +88,8 @@ class PatientsTable extends Component {
             return <div>
                 <h2>Error con el servidor.</h2>
             </div>
-        }else
+        }
+
         return(
             <>
             {/* ALERT */}
@@ -94,7 +101,7 @@ class PatientsTable extends Component {
             <div className="card-body">
               <div className="table-responsive">
               <div class="row">
-                    <div class="col-sm-12 col-md-6">
+                    {/* <div class="col-sm-12 col-md-6">
                         <div class="dataTables_length" id="dataTable_length">
                             <label>Show
                                 <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
@@ -105,10 +112,19 @@ class PatientsTable extends Component {
                                 </select> entries
                             </label>
                         </div>
-                    </div>
+                    </div> */}
                     <div class="col-sm-12 col-md-6">
                         <div id="dataTable_filter" class="dataTables_filter">
-                            <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"/>
+                            <label>Buscar:
+                                <input 
+                                    type="search"
+                                    name="search"
+                                    className="form-control form-control-sm"
+                                    placeholder="Buscar..."
+                                    onChange={this.handleSearch}
+                                    value={this.state.search}
+                                    aria-controls="dataTable"
+                                />
                             </label>
                         </div>
                     </div>
@@ -116,7 +132,7 @@ class PatientsTable extends Component {
                 <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Name</th>
+                      <th>Nombre</th>
                       <th>Apellido(s)</th>
                       <th>Tipo</th>
                       <th>Fecha</th>
@@ -125,7 +141,7 @@ class PatientsTable extends Component {
                   </thead>
                   <tfoot>
                     <tr>
-                        <th>Name</th>
+                        <th>Nombre</th>
                       <th>Apellido(s)</th>
                       <th>Tipo</th>
                       <th>Fecha</th>
@@ -134,15 +150,24 @@ class PatientsTable extends Component {
                   </tfoot>
                   <tbody>
                     {
-
                         patients.map(patient => {
-                            return (
-                                <PatientRow 
-                                    {...patient}
-                                    {...this.props} 
-                                    deletePatient={()=>this.deletePatient(patient._id)}    
-                                />
-                            )
+                            if(
+                                patient.name.toLowerCase().includes(this.state.search.toLowerCase()) ||
+                                patient.lastName.toLowerCase().includes(this.state.search.toLowerCase()) ||
+                                patient.type.toLowerCase().includes(this.state.search.toLowerCase())
+                            ){ 
+                                return (
+                                    <PatientRow 
+                                        {...patient}
+                                        {...this.props} 
+                                        deletePatient={()=>this.deletePatient(patient._id)}    
+                                    />
+                                )
+                            }else{
+                                return null;
+                            }
+                            
+                            
                         })
                     }
                   </tbody>
