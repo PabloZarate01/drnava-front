@@ -11,15 +11,18 @@ export const cmsAPI = axios.create({
   baseURL,
   timeout: 16000,
   headers : {
-    common:{}
+    common:{
+
+    }
   }
 });
+cmsAPI.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("userJWT")}`
 
-cmsAPI.addJwt = ((token) => {
-  console.log("AddJwt", token)
-  if(token)
-    cmsAPI.defaults.headers.common["Authorization"] = `Bearer ${token}`
-})
+// cmsAPI.addJwt = ((token) => {
+//   console.log("AddJwt", token)
+//   if(token)
+//   cmsAPI.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("userJWT")}`
+// })
 
 cmsAPI.resolveAsset = ((url) => {
 	return cmsAPI.defaults.baseURL + url

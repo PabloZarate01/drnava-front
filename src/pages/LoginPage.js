@@ -63,7 +63,6 @@ class LoginPage extends Component {
                 localStorage.setItem("user", JSON.stringify(res.data.user));
                 localStorage.setItem("userJWT", res.data.token);
                 localStorage.setItem("logged", true);
-                cmsAPI.addJwt(res.data.token);
                 this.setState({
                     message:res.data.message,
                     success:res.data.message,

@@ -163,11 +163,9 @@ class PatientsTable extends Component {
                                         deletePatient={()=>this.deletePatient(patient._id)}    
                                     />
                                 )
-                            }else{
+                            }else {
                                 return null;
                             }
-                            
-                            
                         })
                     }
                   </tbody>
