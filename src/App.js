@@ -13,6 +13,7 @@ import CreatePatient from './pages/CreatePatient';
 import SinglePatient from './pages/SinglePatient';
 import CreateRecord from './pages/CreateRecord';
 import SinglePatRecord from './pages/SinglePatRecord'
+import 'moment/locale/es-us';
 // import PrivateRoute from './components/PrivateRoute';
 // import PatientsListPage from './pages/PatientsListPage';
 

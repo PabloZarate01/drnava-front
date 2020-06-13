@@ -6,7 +6,7 @@ export const  PatientRow = (props) =>{
             <td>{ props.name || "N/A"}</td>
             <td>{props.lastName || "N/A"}</td>
             <td>{props.type || "N/A"}</td>
-            <td><Moment format="DD/MM/YYYY">{props.entryDate}</Moment></td>
+            <td><Moment format="LL">{props.entryDate}</Moment></td>
             <td className="text-right">
                 <button onClick={() => props.history.push('nregistro/' + props._id)} className="p-2 btn ml-1 btn-primary btn-circle">
                     <i className="fas fa-plus"></i>

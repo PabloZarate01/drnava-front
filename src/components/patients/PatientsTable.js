@@ -154,7 +154,8 @@ class PatientsTable extends Component {
                             if(
                                 patient.name.toLowerCase().includes(this.state.search.toLowerCase()) ||
                                 patient.lastName.toLowerCase().includes(this.state.search.toLowerCase()) ||
-                                patient.type.toLowerCase().includes(this.state.search.toLowerCase())
+                                patient.type.toLowerCase().includes(this.state.search.toLowerCase()) ||
+                                patient.entryDate.toLowerCase().includes(this.state.search.toLowerCase())
                             ){ 
                                 return (
                                     <PatientRow 
